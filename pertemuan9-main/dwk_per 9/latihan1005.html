@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery contoh hitung luas persegi</title>
+</head>
+<body>
+
+    <h3>hitung luas persegi</h3>
+    <div>nilai panjang<input type="text" id="txpanjang"></div>
+    <div>nilai lebar <input type="text" id="yxlebar"></div>
+    <div><button id="cmdhitung">hitung luas</button></div>
+    <div><span class="vhasil"></span></div>
+    
+    <script src="jquery/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function(){
+            $('#cmdhitung').on('click',function(){
+                let pj = $('txpanjang').val()
+                let lb = $('txlebar').val()
+                let luas = pj*lb
+                let info = "hitung luas persegi<br>"
+                info += "nilai panajang :" +pj+"<br>"
+                info += "nilai lebar :" +lb+"<br>"
+                info += "luas = "+pj+"X"+lb+"<br>"
+                info += "luas =" + luas
+            })
+        })
+    </script>
+</body>
+</html>

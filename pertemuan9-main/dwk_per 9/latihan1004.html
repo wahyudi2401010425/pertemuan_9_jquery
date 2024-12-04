@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery ganti text</title>
+</head>
+<body>
+    
+    <p id="viewTEXT">tulis di sini</p>
+
+    <input type="text" id="txganti">
+    <button id="cmdganti">ganti text</button>
+
+
+    <script src="jquery/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function(){
+            $('#viewTEXT').html("text <strong> pengganti </strong>")
+
+            $('#cmdganti').on('click',function(){
+            let txbaru = $("#txganti").val()
+            $('#viewTEXT').html(txbaru)
+            })
+        })
+    </script>
+</body>
+</html>
