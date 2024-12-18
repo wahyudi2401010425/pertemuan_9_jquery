@@ -19,7 +19,17 @@
         text-shadow: 5px 5px 30px #0400ff;
         color: blueviolet;
       }
-      
+      .bingkai{
+      border-radius: 20px 0px;
+      }
+      .produkitem{
+        height: 200px;
+        text-align: center;
+        object-fit: cover;
+      }
+      .card-title{
+        font-size: 16px;
+      }
     </style>
   </head>
   <body>
@@ -36,7 +46,7 @@
             </div>
             <div class="col">
                 <div id="carouselExample" class="carousel slide"> 
-                  <div class="carousel-inner" id="sliderimg"></div>
+                  <div class="carousel-inner bingkai" id="sliderimg"></div>
 
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -53,6 +63,8 @@
         <div class="produk">
           <a name="produk"></a>
 
+          <div id="produklist"></div>
+
         </div>
 
         <footer class="text-muted" style="clear:both;">
@@ -67,6 +79,8 @@
     $(function(){
       var URLAPI= "http://apimhstiki.ptov.my.id"
       var NIM= "2401010425"
+      let urlproduk = URLAPI+"/"+NIM+"/produk/list"
+      //console.log(urlproduk)
       
 
       $.ajax({
@@ -92,6 +106,35 @@
         error:function(xhr,status,error){
           console.log('Ajax Error:',status,error)
         }
+        })
+
+        $.ajax({
+          url: urlproduk,
+          method:'GET',
+          dataType: 'json',
+          success: function(dta){
+            if(dta && dta.error==0){
+              let tproduk= ""
+              dta.produk.forEach(function(brg,index){
+                tproduk += `<div class="card" style="width: 15rem; float: left; margin: 15px;">
+                  <img src="${brg.IMG}" class="card-img-top" alt="${brg.ITEM}">
+                  <div class="card-body">
+                    <h5 class="card-title">${brg.ITEM}</h5>
+                    <p class="card-text">Rp. ${brg.HRGJUAL},</p>
+                    <a href="#" class="btn btn-primary">detail</a>
+                    <a href="#" class="btn btn-warning">beli</a>
+                  </div>
+                </div>`
+              })
+              $('#produklist').html(tproduk)
+            }else{
+              console.log("tidak ada data produk")
+            }
+          },
+          error: function(xhr,status,erorr){
+            console.log("Ajax erorr: ",status,error)
+          }
+
         })
 
     })
